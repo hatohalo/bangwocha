@@ -1,0 +1,128 @@
+﻿ 
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="gb2312">
+    <title>单位换算</title>
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" id="viewport" name="viewport">
+    <meta content="" name="Description">
+    <meta content="" name="Keywords">
+    <link href="bwc_zz_ip_css/global.css" rel="stylesheet" type="text/css">
+    <link href="bwc_zz_ip_css/theme.css" rel="stylesheet" type="text/css">
+    <style>
+        input {
+            border: 1px solid #FFCECE;
+            padding: 4px;
+        }
+    </style>
+
+
+ 
+     <script language="javascript" type="text/javascript">
+function HEAT_MEASURES(){this.Joule=1;this.Kgm=9.80392157;this.Psh=2647603.9184538;this.Hph=2684563.7583893;this.Kwh=3599712.023038157;this.Kcal=4185.851820846;this.Btu=1055.0749103;this.Ftlb=1.3557483731;}
+var heat_data=new HEAT_MEASURES();
+function checkNum(str){for(var i=0;i<str.length;i++){var ch=str.substring(i,i+1);if(ch!="."&&ch!="+"&&ch!="-"&&ch!="e"&&ch!="E"&&(ch<"0"||ch>"9")){alert("请输入有效的数字");return false;}}return true}
+function normalize(what,digits){var str=""+what;var pp=Math.max(str.lastIndexOf("+"),str.lastIndexOf("-"));var idot=str.indexOf(".");if(idot>=1){var ee=(pp>0)?str.substring(pp-1,str.length):"";digits+=idot;if(digits>=str.length){return str;}if(pp>0&&digits>=pp){digits-=pp;}var c=eval(str.charAt(digits));var ipos=digits-1;if(c>=5){while(str.charAt(ipos)=="9"){ipos--;}if(str.charAt(ipos)=="."){var nc=eval(str.substring(0,idot))+1;if(nc==10&&ee.length>0){nc=1;ee="e"+(eval(ee.substring(1,ee.length))+1);}return ""+nc+ee;}return str.substring(0,ipos)+(eval(str.charAt(ipos))+1)+ee;}else{var ret=str.substring(0,digits)+ee;}for(var i=0;i<ret.length;i++){if(ret.charAt(i)>"0"&&ret.charAt(i)<="9"){return ret;}}return str;}return str;}
+function compute(obj,val,data){if(obj[val].value){var uval=0;uval=obj[val].value*data[val];if((uval>=0)&&(obj[val].value.indexOf("-")!=-1)){uval=-uval;}for(var i in data){obj[i].value=normalize(uval/data[i],8);}}}
+function resetValues(form,data){for(var i in data){form[i].value="";}}function resetAll(form){resetValues(form,heat_data);}
+</script>
+
+
+</head>
+<body>
+    <div class="wrapper">
+
+        <section class="body">
+       
+ 
+            <div class="module">
+                <div class="topic">
+
+                    <span class="name">能量换算器</span>
+
+                </div>
+            </div>
+            <div class="module">
+                <div class="brief" runat="server" id="showinfo_xx">
+
+          
+
+
+
+
+
+
+
+
+
+<form action="">
+
+<table align="center"  class="fengexian">
+  <tr  height=36>
+    <td align=right nowrap>&nbsp;</td>
+    <td align=left><input onClick=resetAll(this.form) type=button value="数据重置" name=res7></td>
+    <td align=left>&nbsp;</td>
+  </tr>
+  <tr  height=36>
+    <td align=right nowrap>焦耳(J)</td>
+    <td align=left><input name=Joule ></td>
+    <td align=left><input onClick="if (checkNum(Joule.value)) compute(this.form, Joule.name, heat_data)" type=button value="换算" name=Joule_bt></td>
+  </tr>
+  <tr  height=36>
+    <td align=right nowrap>米制马力·时<br />(PS·h)</td>
+    <td align=left><input name=Psh ></td>
+    <td align=left><input onClick="if (checkNum(Psh.value)) compute(this.form, Psh.name, heat_data)" type=button value="换算" name=Psh_bt></td>
+  </tr>
+  <tr  height=36>
+    <td align=right nowrap>千瓦·时(kW·h)</td>
+    <td align=left><input name=Kwh ></td>
+    <td align=left><input onClick="if (checkNum(Kwh.value)) compute(this.form, Kwh.name, heat_data)" type=button value="换算" name=Kwh_bt></td>
+  </tr>
+  <tr  height=36>
+    <td align=right nowrap>英热单位(Btu)</td>
+    <td align=left><input name=Btu ></td>
+    <td align=left><input onClick="if (checkNum(Btu.value)) compute(this.form, Btu.name, heat_data)" type=button value="换算" name=Btu_bt></td>
+  </tr>
+  <tr  height=36>
+    <td align=right nowrap>公斤·米(kg·m)</td>
+    <td align=left><input name=Kgm ></td>
+    <td align=left><input onClick="if (checkNum(Kgm.value)) compute(this.form, Kgm.name, heat_data)" type=button value="换算" name=Kgm_bt></td>
+  </tr>
+  <tr  height=36>
+    <td align=right nowrap>英制马力·时<br />(HP·h)</td>
+    <td align=left><input name=Hph ></td>
+    <td align=left><input onClick="if (checkNum(Hph.value)) compute(this.form, Hph.name, heat_data)" type=button value="换算" name=Hph_bt></td>
+  </tr>
+  <tr  height=36>
+    <td align=right nowrap>千卡(kcal)</td>
+    <td align=left><input name=Kcal ></td>
+    <td align=left><input onClick="if (checkNum(Kcal.value)) compute(this.form, Kcal.name, heat_data)" type=button value="换算" name=Kcal_bt></td>
+  </tr>
+  <tr  height=36>
+    <td align=right nowrap>英尺·磅(ft·lb)</td>
+    <td align=left><input name=Ftlb ></td>
+    <td align=left><input onClick="if (checkNum(Ftlb.value)) compute(this.form, Ftlb.name, heat_data)" type=button value="换算" name=Ftlb_bt></td>
+  </tr>
+</table>
+
+
+</form>
+
+
+
+
+
+
+
+
+                </div>
+
+            </div>
+
+ 
+        </section>
+
+    </div>
+ 
+</body>
+</html>

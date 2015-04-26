@@ -1,0 +1,149 @@
+﻿ 
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="gb2312">
+    <title>单位换算</title>
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" id="viewport" name="viewport">
+    <meta content="" name="Description">
+    <meta content="" name="Keywords">
+    <link href="bwc_zz_ip_css/global.css" rel="stylesheet" type="text/css">
+    <link href="bwc_zz_ip_css/theme.css" rel="stylesheet" type="text/css">
+    <style>
+        input {
+            border: 1px solid #FFCECE;
+            padding: 4px;
+        }
+    </style>
+
+
+
+    <script language="javascript" type="text/javascript">
+function POWER_MEASURES(){this.Watt=0.001;this.Kilowatt=1;this.Horsepower=0.745712172;this.mHorsepower=0.7352941;this.kgms=0.0098039215;this.kcals=4.1841004;this.Btus=1.05507491;this.ftlbs=0.0013557483731;this.Js=0.001;this.Nms=0.001;}var power_data=new POWER_MEASURES();
+function checkNum(str){for(var i=0;i<str.length;i++){var ch=str.substring(i,i+1);if(ch!="."&&ch!="+"&&ch!="-"&&ch!="e"&&ch!="E"&&(ch<"0"||ch>"9")){alert("请输入有效的数字");return false;}}return true}
+function normalize(what,digits){var str=""+what;var pp=Math.max(str.lastIndexOf("+"),str.lastIndexOf("-"));var idot=str.indexOf(".");if(idot>=1){var ee=(pp>0)?str.substring(pp-1,str.length):"";digits+=idot;if(digits>=str.length){return str;}if(pp>0&&digits>=pp){digits-=pp;}var c=eval(str.charAt(digits));var ipos=digits-1;if(c>=5){while(str.charAt(ipos)=="9"){ipos--;}if(str.charAt(ipos)=="."){var nc=eval(str.substring(0,idot))+1;if(nc==10&&ee.length>0){nc=1;ee="e"+(eval(ee.substring(1,ee.length))+1);}return ""+nc+ee;}return str.substring(0,ipos)+(eval(str.charAt(ipos))+1)+ee;}else{var ret=str.substring(0,digits)+ee;}for(var i=0;i<ret.length;i++){if(ret.charAt(i)>"0"&&ret.charAt(i)<="9"){return ret;}}return str;}return str;}
+function compute(obj,val,data){if(obj[val].value){var uval=0;uval=obj[val].value*data[val];if((uval>=0)&&(obj[val].value.indexOf("-")!=-1)){uval=-uval;}for(var i in data){obj[i].value=normalize(uval/data[i],8);}}}
+function resetValues(form,data){for(var i in data){form[i].value="";}}
+function resetAll(form){resetValues(form,power_data);}
+</script>
+
+    
+
+
+</head>
+<body>
+    <div class="wrapper">
+
+        <section class="body">
+ 
+ 
+            <div class="module">
+                <div class="topic">
+
+                    <span class="name">功率换算器</span>
+
+                </div>
+            </div>
+            <div class="module">
+                <div class="brief" runat="server" id="showinfo_xx">
+
+          
+
+
+
+<form action="">
+
+
+       
+<table align="center"  class="fengexian">
+  <tr  height=42>
+    <td align=right nowrap>&nbsp;</td>
+    <td align=left><input onClick=resetAll(this.form) type=button value="数据重置" name=res7></td>
+    <td align=left>&nbsp;</td>
+  </tr>
+  <tr  height=42>
+    <td align=right nowrap>瓦<br />
+      (W)</td>
+    <td align=left><input name=Watt ></td>
+    <td align=left><input onClick="if (checkNum(Watt.value)) compute(this.form, Watt.name, power_data)" type=button value="换算" name=Watt_bt></td>
+  </tr>
+  <tr  height=42>
+    <td align=right nowrap>英制马力<br />
+      (HP)</td>
+    <td align=left><input name=Horsepower ></td>
+    <td align=left><input onClick="if (checkNum(Horsepower.value)) compute(this.form, Horsepower.name, power_data)" type=button value="换算" name=Horsepower_bt></td>
+  </tr>
+  <tr  height=42>
+    <td align=right nowrap>公斤·米/秒<br />
+      (kg·m/s)</td>
+    <td align=left><input name=kgms ></td>
+    <td align=left><input onClick="if (checkNum(kgms.value)) compute(this.form, kgms.name, power_data)" type=button value="换算" name=kgms_bt></td>
+  </tr>
+  <tr  height=42>
+    <td align=right nowrap>英热单位/秒<br />
+      (Btu/s)</td>
+    <td align=left><input name=Btus ></td>
+    <td align=left><input onClick="if (checkNum(Btus.value)) compute(this.form, Btus.name, power_data)" type=button value="换算" name=Btus_bt></td>
+  </tr>
+  <tr  height=42>
+    <td align=right nowrap>焦耳/秒<br />
+      (J/s)</td>
+    <td align=left><input name=Js ></td>
+    <td align=left><input onClick="if (checkNum(Js.value)) compute(this.form, Js.name, power_data)" type=button value="换算" name=Js_bt></td>
+  </tr>
+  <tr  height=42>
+    <td align=right nowrap>千瓦<br />
+      (kW)</td>
+    <td align=left><input name=Kilowatt ></td>
+    <td align=left><input onClick="if (checkNum(Kilowatt.value)) compute(this.form, Kilowatt.name, power_data)" type=button value="换算" name=Kilowatt_bt></td>
+  </tr>
+  <tr  height=42>
+    <td align=right nowrap>米制马力<br />
+      (PS)</td>
+    <td align=left><input name=mHorsepower ></td>
+    <td align=left><input onClick="if (checkNum(mHorsepower.value)) compute(this.form, mHorsepower.name, power_data)" type=button value="换算" name=mHorsepower_bt></td>
+  </tr>
+  <tr  height=42>
+    <td align=right nowrap>千卡/秒<br />
+      (kcal/s)</td>
+    <td align=left><input name=kcals ></td>
+    <td align=left><input onClick="if (checkNum(kcals.value)) compute(this.form, kcals.name, power_data)" type=button value="换算" name=kcals_bt></td>
+  </tr>
+  <tr  height=42>
+    <td align=right nowrap>英尺·磅/秒<br />
+      (ft·lb/s)</td>
+    <td align=left><input name=ftlbs ></td>
+    <td align=left><input onClick="if (checkNum(ftlbs.value)) compute(this.form, ftlbs.name, power_data)" type=button value="换算" name=ftlbs_bt></td>
+  </tr>
+  <tr  height=42>
+    <td align=right nowrap>牛顿·米/秒<br />
+      (N·m/s)</td>
+    <td align=left><input name=Nms ></td>
+    <td align=left><input onClick="if (checkNum(Nms.value)) compute(this.form, Nms.name, power_data)" type=button value="换算" name=Nms_bt></td>
+  </tr>
+</table>
+ 
+
+
+
+    </form>
+
+
+
+
+
+
+
+
+
+                </div>
+
+            </div>
+
+ 
+        </section>
+
+    </div>
+ 
+</body>
+</html>

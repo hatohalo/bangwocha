@@ -1,0 +1,315 @@
+﻿Stream 转IRandomAccessStream 
+
+
+
+
+
+
+
+
+方法一：
+
+byte[] bytes = StreamToBytes(stream);
+
+InMemoryRandomAccessStream memoryStream = new InMemoryRandomAccessStream();
+
+DataWriter datawriter = new DataWriter(memoryStream.GetOutputStreamAt(0));
+
+datawriter.WriteBytes(bytes);
+
+await datawriter.StoreAsync(); 
+
+
+
+
+
+
+
+
+方法二：
+
+var randomAccessStream = new InMemoryRandomAccessStream();
+
+var outputStream = randomAccessStream.GetOutputStreamAt(0);
+
+await RandomAccessStream.CopyAsync(stream.AsInputStream(), outputStream); 
+
+
+
+
+
+
+
+
+   
+
+
+IRandomAccessStream 转 Stream 
+
+
+
+
+
+
+
+
+Stream stream=WindowsRuntimeStreamExtensions.AsStreamForRead(randomStream.GetInputStreamAt(0)); 
+
+
+ 
+
+Ibuffer转Stream 
+
+
+
+
+
+
+
+
+Stream stream = WindowsRuntimeBufferExtensions.AsStream(buffer); 
+
+
+
+
+
+
+
+
+   
+
+
+Stream转Ibuffer 
+
+
+
+
+
+
+
+
+MemoryStream memoryStream = new MemoryStream();            
+
+ if (stream != null)
+
+ {
+
+      byte[] bytes = ReadFully(stream);
+
+      if (bytes != null)
+
+      {
+
+           var binaryWriter = new BinaryWriter(memoryStream);
+
+           binaryWriter.Write(bytes);
+
+       }
+
+  } 
+
+ IBuffer buffer=WindowsRuntimeBufferExtensions.GetWindowsRuntimeBuffer(memoryStream,0,(int)memoryStream.Length); 
+
+
+ 
+
+Ibuffer转byte[] 
+
+
+
+
+
+
+
+
+byte[] bytes=WindowsRuntimeBufferExtensions.ToArray(buffer,0,(int)buffer.Length); 
+
+
+ 
+
+Byte[]转Ibuffer 
+
+
+
+
+
+
+
+
+WindowsRuntimeBufferExtensions.AsBuffer(bytes,0,bytes.Length); 
+
+
+ 
+
+Ibuffer转IrandomAccessStream 
+
+
+
+
+
+
+
+
+InMemoryRandomAccessStream inStream = new InMemoryRandomAccessStream();
+
+DataWriter datawriter = new DataWriter(inStream.GetOutputStreamAt(0));
+
+datawriter.WriteBuffer(buffer,0,buffer.Length);
+
+await datawriter.StoreAsync(); 
+
+
+ 
+
+IrandomAccessStream转Ibuffer 
+
+
+
+
+
+
+
+
+Stream stream=WindowsRuntimeStreamExtensions.AsStreamForRead(randomStream.GetInputStreamAt(0));
+
+MemoryStream memoryStream = new MemoryStream();            
+
+if (stream != null)
+
+{
+
+    byte[] bytes = ReadFully(stream);
+
+    if (bytes != null)
+
+    {
+
+        var binaryWriter = new BinaryWriter(memoryStream);
+
+        binaryWriter.Write(bytes);
+
+    }
+
+} 
+
+IBuffer buffer=WindowsRuntimeBufferExtensions.GetWindowsRuntimeBuffer(memoryStream,0,(int)memoryStream.Length); 
+
+
+ 
+
+IRandomAccessStream转FileInputStream 
+
+
+
+
+
+
+
+
+FileInputStream inputStream=randomStream.GetInputStreamAt(0) as FileInputStream; 
+
+
+ 
+
+IRandomAccessStream转FileOutputStream 
+
+
+
+
+
+
+
+
+FileOutputStream outStream= randomStream.GetOutputStreamAt(0) as FileOutputStream; 
+
+
+ 
+
+Stream转byte[] 
+
+public static byte[] ConvertStreamTobyte(Stream input) 
+
+{ 
+
+byte[] buffer = new byte[16 * 1024]; 
+
+using (MemoryStream ms = new MemoryStream()) 
+
+{ 
+
+int read; 
+
+while ((read = input.Read(buffer, 0, buffer.Length)) > 0) 
+
+{ 
+
+ms.Write(buffer, 0, read); 
+
+} 
+
+return ms.ToArray(); 
+
+} 
+
+} 
+
+  
+
+Byte转Stream 
+
+
+
+
+
+
+
+
+public Stream BytesToStream(byte[] bytes)
+
+        {
+
+            Stream stream = new MemoryStream(bytes);
+
+            return stream;
+
+        } 
+
+
+ 
+
+Stream转MemoryStream 
+
+
+
+
+
+
+
+
+public static MemoryStream ConvertStreamToMemoryStream(Stream stream)
+
+        { 
+
+            MemoryStream memoryStream = new MemoryStream();
+
+            if (stream != null)
+
+            {
+
+                byte[] buffer = ReadFully(stream);
+
+                if (buffer != null)
+
+                {
+
+                    var binaryWriter = new BinaryWriter(memoryStream);
+
+                    binaryWriter.Write(buffer);
+
+                } 
+
+            } 
+
+            return memoryStream;
+
+        } 

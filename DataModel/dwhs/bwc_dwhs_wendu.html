@@ -1,0 +1,114 @@
+﻿ 
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="gb2312">
+    <title>单位换算</title>
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" id="viewport" name="viewport">
+    <meta content="" name="Description">
+    <meta content="" name="Keywords">
+    <link href="bwc_zz_ip_css/global.css" rel="stylesheet" type="text/css">
+    <link href="bwc_zz_ip_css/theme.css" rel="stylesheet" type="text/css">
+    <style>
+        input {
+            border: 1px solid #FFCECE;
+            padding: 4px;
+        }
+    </style>
+
+ <script language="javascript" type="text/javascript">
+function checkNum(str){for(var i=0;i<str.length;i++){var ch=str.substring(i,i+1);if(ch!="."&&ch!="+"&&ch!="-"&&ch!="e"&&ch!="E"&&(ch<"0"||ch>"9")){alert("请输入有效的数字");return false;}}return true}
+function computeTempC(obj){var tempC=parseFloat(obj.tempCelsius.value);if((tempC>=0)&&(obj.tempCelsius.value.indexOf("-")!=-1)){tempC=-tempC;}if(!(tempC<-273.15)){var tempK=tempC+273.15;var tempF=32+(tempC*9/5);var tempRa=tempK*1.8;var tempRe=tempC/1.25;obj.tempKelvin.value=tempK;obj.tempFahr.value=tempF;obj.tempRankine.value=tempRa;obj.tempReaumur.value=tempRe;}else{obj.tempKelvin.value="ERROR";obj.tempFahr.value="ERROR";obj.tempRankine.value="ERROR";obj.tempReaumur.value="ERROR";}}
+function computeTempF(obj){var tempF=parseFloat(obj.tempFahr.value);if((tempF>=0)&&(obj.tempFahr.value.indexOf("-")!=-1)){tempF=-tempF;}if(!(tempF<-459.666666)){var tempC=(tempF-32)*5/9;var tempK=tempC+273.15;var tempRa=tempK*1.8;var tempRe=tempC/1.25;obj.tempCelsius.value=tempC;obj.tempKelvin.value=tempK;obj.tempRankine.value=tempRa;obj.tempReaumur.value=tempRe;}else{obj.tempCelsius.value="ERROR";obj.tempKelvin.value="ERROR";obj.tempRankine.value="ERROR";obj.tempReaumur.value="ERROR";}}
+function computeTempK(obj){var tempK=parseFloat(obj.tempKelvin.value);if((tempK>=0)&&(obj.tempKelvin.value.indexOf("-")!=-1)){tempK=-tempK;}if(!(tempK<0)){var tempC=tempK-273.15;var tempF=32+(tempC*9/5);var tempRa=tempK*1.8;var tempRe=tempC/1.25;obj.tempCelsius.value=tempC;obj.tempFahr.value=tempF;obj.tempRankine.value=tempRa;obj.tempReaumur.value=tempRe;}else{obj.tempCelsius.value="ERROR";obj.tempFahr.value="ERROR";obj.tempRankine.value="ERROR";obj.tempReaumur.value="ERROR";}}
+function computeTempRa(obj){var tempRa=parseFloat(obj.tempRankine.value);if((tempRa>=0)&&(obj.tempRankine.value.indexOf("-")!=-1)){tempRa=-tempRa;}if(!(tempRa<0)){var tempK=tempRa/1.8;var tempC=tempK-273.15;var tempF=32+(tempC*9/5);var tempRe=tempC/1.25;obj.tempCelsius.value=tempC;obj.tempFahr.value=tempF;obj.tempKelvin.value=tempK;obj.tempReaumur.value=tempRe;}else{obj.tempCelsius.value="ERROR";obj.tempFahr.value="ERROR";obj.tempKelvin.value="ERROR";obj.tempReaumur.value="ERROR";}}
+function computeTempRe(obj){var tempRe=parseFloat(obj.tempReaumur.value);if((tempRe>=0)&&(obj.tempReaumur.value.indexOf("-")!=-1)){tempRe=-tempRe;}if(!(tempRe<-218.5199999999)){var tempC=tempRe*1.25;var tempK=tempC+273.15;var tempF=32+(tempC*9/5);var tempRa=tempK*1.8;obj.tempCelsius.value=tempC;obj.tempFahr.value=tempF;obj.tempKelvin.value=tempK;obj.tempRankine.value=tempRa;}else{obj.tempCelsius.value="ERROR";obj.tempFahr.value="ERROR";obj.tempKelvin.value="ERROR";obj.tempRankine.value="ERROR";}}
+function resetAll(form){form.tempCelsius.value="";form.tempKelvin.value="";form.tempFahr.value="";form.tempRankine.value="";form.tempReaumur.value="";}
+</script>
+
+    
+
+
+</head>
+<body>
+    <div class="wrapper">
+
+        <section class="body">
+     
+            <div class="module">
+                <div class="topic">
+
+                    <span class="name">温度换算器</span>
+
+                </div>
+            </div>
+            <div class="module">
+                <div class="brief" runat="server" id="showinfo_xx">
+
+          
+
+
+
+
+
+
+<form name=form1  action="">
+
+     
+    <table align="center"  class="fengexian">
+  <tr  height=36>
+    <td align=right nowrap>&nbsp;</td>
+    <td align=left><input onClick=resetAll(this.form) type=button value="数据重置" name=res6></td>
+    <td align=left>&nbsp;</td>
+  </tr>
+  <tr  height=36>
+    <td align=right nowrap>摄氏度(C)</td>
+    <td align=left><input name=tempCelsius ></td>
+    <td align=left><input onClick="if (checkNum(document.form1.tempCelsius.value)) computeTempC(document.form1)" type=button value="换算"></td>
+  </tr>
+  <tr  height=36>
+    <td align=right nowrap>开氏度(K)</td>
+    <td align=left><input name=tempKelvin ></td>
+    <td align=left><input onClick="if (checkNum(document.form1.tempKelvin.value)) computeTempK(document.form1)" type=button value="换算"></td>
+  </tr>
+  <tr  height=36>
+    <td align=right nowrap>列氏度(Re)</td>
+    <td align=left><input name=tempReaumur ></td>
+    <td align=left><input onClick="if (checkNum(document.form1.tempReaumur.value)) computeTempRe(document.form1)"  type=button value="换算"></td>
+  </tr>
+  <tr  height=36>
+    <td align=right nowrap>华氏度(F)</td>
+    <td align=left><input name=tempFahr ></td>
+    <td align=left><input onClick="if (checkNum(document.form1.tempFahr.value)) computeTempF(document.form1)" type=button value="换算"></td>
+  </tr>
+  <tr  height=36>
+    <td align=right nowrap>兰氏度(Ra)</td>
+    <td align=left><input name=tempRankine ></td>
+    <td align=left><input onClick="if (checkNum(document.form1.tempRankine.value)) computeTempRa(document.form1)"  type=button value="换算"></td>
+  </tr>
+</table>
+
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+                </div>
+
+            </div>
+
+ 
+        </section>
+
+    </div>
+ 
+</body>
+</html>

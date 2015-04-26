@@ -1,0 +1,171 @@
+﻿ 
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="gb2312">
+    <title>单位换算</title>
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" id="viewport" name="viewport">
+    <meta content="" name="Description">
+    <meta content="" name="Keywords">
+    <link href="bwc_zz_ip_css/global.css" rel="stylesheet" type="text/css">
+    <link href="bwc_zz_ip_css/theme.css" rel="stylesheet" type="text/css">
+    <style>
+        input {
+            border: 1px solid #FFCECE;
+            padding: 4px;
+        }
+    </style>
+
+
+ 
+<script language="javascript" type="text/javascript">
+    function checkNum(str) { for (var i = 0; i < str.length; i++) { var ch = str.substring(i, i + 1); if (ch != "." && ch != "+" && ch != "-" && ch != "e" && ch != "E" && (ch < "0" || ch > "9")) { alert("请输入有效的数字"); return false; } } return true } var press_data = new PRESS_MEASURES();
+    function normalize(what, digits) { theInput = String(what); outputDigits = parseInt(digits); var theOutput; var theShift; var outputExp = ''; var outputSign = ''; if (theInput.indexOf("e") != -1) { outputExp = theInput.substring(theInput.indexOf("e"), theInput.length); theInput = theInput.substring(0, theInput.indexOf("e")); } else { if (theInput.indexOf("E") != -1) { outputExp = theInput.substring(theInput.indexOf("E"), theInput.length); theInput = theInput.substring(0, theInput.indexOf("e")); } if (theInput.substring(0, 1) == '-') { outputSign = '-'; theInput = theInput.substring(1, theInput.length); } } if (parseFloat(theInput) >= 1.0) { var pointPos = theInput.indexOf("."); if (pointPos == -1) { pointPos = theInput.length; } theShift = pointPos - outputDigits; } else { var notNull = String(theInput).lastIndexOf('.') + 1; if (notNull == 1) { notNull += 1; } while (String(theInput).charAt(notNull) == '0') { notNull++; } notNull -= 2; theShift = -(outputDigits + notNull); } theOutput = Math.round(theInput / Math.pow(10, theShift)); if (theShift >= 0) { for (var i = 1; i <= theShift; i++) { theOutput += '0'; } } else { theOutput += ''; if (theOutput.length + theShift > 0) { theOutput = theOutput.substring(0, theOutput.length + theShift) + '.' + theOutput.substring((theOutput.length + theShift), theOutput.length); } else { var theOutput1 = '0.'; for (var i = -1; i >= theOutput.length + theShift; i--) { theOutput1 += '0'; } theOutput = theOutput1 + theOutput; } while (theOutput.charAt(theOutput.length - 1) == '0') { theOutput = theOutput.substring(0, theOutput.length - 1); } if (theOutput.charAt(theOutput.length - 1) == '.') { theOutput = theOutput.substring(0, theOutput.length - 1); } } theOutput = outputSign + theOutput + outputExp; return theOutput; }
+    function compute(obj, val, data) { if (obj[val].value) { var uval = 0; uval = obj[val].value * data[val]; if ((uval >= 0) && (String(obj[val].value).charAt(0) == '-')) { uval = -uval; } for (var i in data) { obj[i].value = normalize(uval / data[i], 8); } } }
+    function PRESS_MEASURES() { this.mKilopascal = 1000; this.mHectopascal = 100; this.mPascal = 1; this.mBar = 100000; this.mMillibar = 100; this.mAtm = 101325; this.mMillimeter_Hg = this.mAtm / 760; this.engInch_Hg = 25.4 * this.mMillimeter_Hg; this.engPound_sq_inch = 6894.757; this.engPound_sq_foot = this.engPound_sq_inch / 144; this.xpressKg_sq_cm = 98066.5; this.xpressKg_sq_m = 9.80665; this.mmmH2O = 9.80665; }
+    function resetAll(form) { resetValues(form, press_data); }
+</script>
+
+
+
+
+</head>
+<body>
+    <div class="wrapper">
+
+        <section class="body">
+    
+ 
+            <div class="module">
+                <div class="topic">
+
+                    <span class="name">压力换算器</span>
+
+                </div>
+            </div>
+            <div class="module">
+                <div class="brief" runat="server" id="showinfo_xx">
+
+          
+
+
+
+
+
+
+
+<form name=form1 action="">
+
+
+     
+<table align="center"  class="fengexian">
+  <tr >
+    <td align=right nowrap>&nbsp;</td>
+    <td align=left><input name="res6" type="reset" value="数据重置"></td>
+    <td align=left>&nbsp;</td>
+  </tr>
+  <tr >
+    <td align=right nowrap>巴<br />
+      (bar)</td>
+    <td align=left><input name=mBar ></td>
+    <td align=left><input name=mBar_bt onClick="if (checkNum(document.form1.mBar.value)) compute(document.form1, document.form1.mBar.name, press_data)" type=button value="换算"></td>
+  </tr>
+  <tr >
+    <td align=right nowrap>百帕<br />
+      (hPa)</td>
+    <td align=left><input name=mHectopascal ></td>
+    <td align=left><input name=mHectopascal_bt onClick="if (checkNum(document.form1.mHectopascal.value)) compute(document.form1, document.form1.mHectopascal.name, press_data)" type=button value="换算"></td>
+  </tr>
+  <tr >
+    <td align=right nowrap>帕斯卡<br />
+      (Pa&nbsp;=&nbsp;N/m<SUP>2</SUP>)</td>
+    <td align=left><input name=mPascal ></td>
+    <td align=left><input name=mPascal_bt onClick="if (checkNum(document.form1.mPascal.value)) compute(document.form1, document.form1.mPascal.name, press_data)" type=button value="换算"></td>
+  </tr>
+  <tr >
+    <td align=right nowrap>毫米汞柱(托)<br />
+      (mm&nbsp;Hg=Torr)</td>
+    <td align=left><input name=mMillimeter_Hg ></td>
+    <td align=left><input name=mMillimeter_Hg_bt onClick="if (checkNum(document.form1.mMillimeter_Hg.value)) compute(document.form1, document.form1.mMillimeter_Hg.name, press_data)" type=button value="换算"></td>
+  </tr>
+  <tr >
+    <td align=right nowrap>磅力/英寸<SUP>2</SUP><br />
+      (lbf/in<SUP>2</SUP>&nbsp;=&nbsp;PSI)</td>
+    <td align=left><input name=engPound_sq_inch ></td>
+    <td align=left><input name=engPound_sq_inch_bt onClick="if (checkNum(document.form1.engPound_sq_inch.value)) compute(document.form1, document.form1.engPound_sq_inch.name, press_data)" type=button value="换算"></td>
+  </tr>
+  <tr >
+    <td align=right nowrap>公斤力/厘米<SUP>2</SUP><br />
+      (kgf/cm<SUP>2</SUP>)</td>
+    <td align=left><input name=xpressKg_sq_cm ></td>
+    <td align=left><input name=xpressKg_sq_cm_bt onClick="if (checkNum(document.form1.xpressKg_sq_cm.value)) compute(document.form1, document.form1.xpressKg_sq_cm.name, press_data)" type=button value="换算"></td>
+  </tr>
+  <tr >
+    <td align=right nowrap>毫米水柱<br />
+      (mmH<SUB>2</SUB>O)</td>
+    <td align=left><input name=mmmH2O ></td>
+    <td align=left><input name=mmmH2O_bt onClick="if (checkNum(document.form1.mmmH2O.value)) compute(document.form1, document.form1.mmmH2O.name, press_data)" type=button value="换算"></td>
+  </tr>
+  <tr >
+    <td align=right nowrap>千帕<br />
+      (kPa)</td>
+    <td align=left><input name=mKilopascal ></td>
+    <td align=left><input name=mKilopascal_bt onClick="if (checkNum(document.form1.mKilopascal.value)) compute(document.form1, document.form1.mKilopascal.name, press_data)" type=button value="换算"></td>
+  </tr>
+  <tr >
+    <td align=right nowrap>毫巴<br />
+      (mbar)</td>
+    <td align=left><input name=mMillibar ></td>
+    <td align=left><input name=mMillibar_bt onClick="if (checkNum(document.form1.mMillibar.value)) compute(document.form1, document.form1.mMillibar.name, press_data)"  type=button value="换算"></td>
+  </tr>
+  <tr >
+    <td align=right nowrap>标准大气压<br />
+      (atm)</td>
+    <td align=left><input name=mAtm ></td>
+    <td align=left><input name=mAtm_bt onClick="if (checkNum(document.form1.mAtm.value)) compute(document.form1, document.form1.mAtm.name, press_data)"  type=button value="换算"></td>
+  </tr>
+  <tr >
+    <td align=right nowrap>磅力/英尺<SUP>2</SUP><br />
+      (lbf/ft<SUP>2</SUP>)</td>
+    <td align=left><input name=engPound_sq_foot ></td>
+    <td align=left><input name=engPound_sq_foot_bt onClick="if (checkNum(document.form1.engPound_sq_foot.value)) compute(document.form1, document.form1.engPound_sq_foot.name, press_data)"  type=button value="换算"></td>
+  </tr>
+  <tr >
+    <td align=right nowrap>英吋汞柱<br />
+      (in&nbsp;Hg)</td>
+    <td align=left><input name=engInch_Hg ></td>
+    <td align=left><input name=engInch_Hg_bt onClick="if (checkNum(document.form1.engInch_Hg.value)) compute(document.form1, document.form1.engInch_Hg.name, press_data)"  type=button value="换算"></td>
+  </tr>
+  <tr >
+    <td align=right nowrap>公斤力/米<SUP>2</SUP><br />
+      (kgf/m<SUP>2</SUP>)</td>
+    <td align=left><input name=xpressKg_sq_m ></td>
+    <td align=left><input name=xpressKg_sq_m_bt onClick="if (checkNum(document.form1.xpressKg_sq_m.value)) compute(document.form1, document.form1.xpressKg_sq_m.name, press_data)"  type=button value="换算"></td>
+  </tr>
+</table>
+ 
+
+
+</form>
+
+
+
+
+
+
+
+
+
+
+
+                </div>
+
+            </div>
+
+ 
+        </section>
+
+    </div>
+ 
+</body>
+</html>

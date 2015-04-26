@@ -1,0 +1,162 @@
+﻿ 
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="gb2312">
+    <title>单位换算</title>
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" id="viewport" name="viewport">
+    <meta content="" name="Description">
+    <meta content="" name="Keywords">
+    <link href="bwc_zz_ip_css/global.css" rel="stylesheet" type="text/css">
+    <link href="bwc_zz_ip_css/theme.css" rel="stylesheet" type="text/css">
+
+    <style>
+        input {
+            border: 1px solid #FFCECE;
+            padding: 4px;
+        }
+    </style>
+
+    <script language="javascript" type="text/javascript">
+function AREA_MEASURES(){this.mSquare_kilometer=(1000*1000);this.mHectare=(100*100);this.mSquare_meter=1;this.mAre=((10000/15)*this.mSquare_meter);this.mSquare_decimeter=(0.1*0.1);this.mSquare_centimeter=(0.01*0.01);this.mSquare_millimeter=(0.001*0.001);this.engSquare_foot=(0.3048*0.3048);this.engSquare_yard=(3*3*this.engSquare_foot);this.usSquare_rod=(16.5 *16.5*this.engSquare_foot);this.engAcre=160*this.usSquare_rod;this.engSquare_mile=(5280 *5280*this.engSquare_foot);this.engSquare_inch=(this.engSquare_foot/(12*12))}
+var area_data=new AREA_MEASURES();
+function checkNum(str){for(var i=0;i<str.length;i++){var ch=str.substring(i,i+1);if(ch!="."&&ch!="+"&&ch!="-"&&ch!="e"&&ch!="E"&&(ch<"0"||ch>"9")){alert("请输入有效的数字");return false;}}return true}
+function normalize(what,digits){var str=""+what;var pp=Math.max(str.lastIndexOf("+"),str.lastIndexOf("-"));var idot=str.indexOf(".");if(idot>=1){var ee=(pp>0)?str.substring(pp-1,str.length):"";digits+=idot;if(digits>=str.length){return str;}if(pp>0&&digits>=pp){digits-=pp;}var c=eval(str.charAt(digits));var ipos=digits-1;if(c>=5){while(str.charAt(ipos)=="9"){ipos--;}if(str.charAt(ipos)=="."){var nc=eval(str.substring(0,idot))+1;if(nc==10 && ee.length>0){nc=1;ee="e"+(eval(ee.substring(1,ee.length))+1);}return ""+nc+ee;}return str.substring(0,ipos)+(eval(str.charAt(ipos))+1)+ee;}else{var ret=str.substring(0,digits)+ee;}for(var i=0;i<ret.length;i++){if(ret.charAt(i)>"0"&&ret.charAt(i)<="9"){return ret;}}return str;}return str;}
+function compute(obj,val,data){if(obj[val].value){var uval=0;uval=obj[val].value*data[val];if((uval>=0)&&(obj[val].value.indexOf("-")!= -1)){uval=-uval;}for(var i in data){obj[i].value=normalize(uval/data[i],8);}}}
+function resetValues(form,data){for(var i in data){form[i].value="";}}function resetAll(form){resetValues(form,area_data);}
+</script>
+
+
+
+</head>
+<body>
+    <div class="wrapper">
+
+        <section class="body">
+    
+ 
+            <div class="module">
+                <div class="topic">
+
+                    <span class="name">面积换算器</span>
+
+                </div>
+            </div>
+            <div class="module">
+                <div class="brief" runat="server" id="showinfo_xx">
+
+          
+
+
+
+
+
+
+
+<form action="">
+
+
+    <table align="center"  class="fengexian">
+  <tr >
+    <td align=right nowrap>&nbsp;</td>
+    <td align=left><input onClick=resetAll(this.form) type=button value="数据重置" name=res7></td>
+    <td align=left>&nbsp;</td>
+  </tr>
+  <tr >
+    <td align=right nowrap>平方公里<br />
+      (km<sup>2</sup>)</td>
+    <td align=left><input name=mSquare_kilometer ></td>
+    <td align=left><input onClick="if (checkNum(mSquare_kilometer.value)) compute(this.form, mSquare_kilometer.name, area_data)" type=button value="换算" name=mSquare_kilometer_bt></td>
+  </tr>
+  <tr >
+    <td align=right nowrap>市亩</td>
+    <td align=left><input name=mAre ></td>
+    <td align=left><input onClick="if (checkNum(mAre.value)) compute(this.form, mAre.name, area_data)" type=button value="换算" name=mAre_bt></td>
+  </tr>
+  <tr >
+    <td align=right nowrap>平方分米<br />(dm<sup>2</sup>)</td>
+    <td align=left><input name=mSquare_decimeter ></td>
+    <td align=left><input onClick="if (checkNum(mSquare_decimeter.value)) compute(this.form, mSquare_decimeter.name, area_data)" type=button value="换算" name=mSquare_decimeter_bt></td>
+  </tr>
+  <tr >
+    <td align=right nowrap>平方毫米<br />
+      (mm<sup>2</sup>)</td>
+    <td align=left><input name=mSquare_millimeter ></td>
+    <td align=left><input onClick="if (checkNum(mSquare_millimeter.value)) compute(this.form, mSquare_millimeter.name, area_data)" type=button value="换算" name=mSquare_millimeter_bt></td>
+  </tr>
+  <tr >
+    <td align=right nowrap>英亩</td>
+    <td align=left><input name=engAcre ></td>
+    <td align=left><input onClick="if (checkNum(engAcre.value)) compute(this.form, engAcre.name, area_data)" type=button value="换算" name=engAcre_bt></td>
+  </tr>
+  <tr >
+    <td align=right nowrap>平方码<br />
+      (sq yd)</td>
+    <td align=left><input name=engSquare_yard ></td>
+    <td align=left><input onClick="if (checkNum(engSquare_yard.value)) compute(this.form, engSquare_yard.name, area_data)" type=button value="换算" name=engSquare_yard_bt></td>
+  </tr>
+  <tr >
+    <td align=right nowrap>平方英寸<br />
+      (sq in)</td>
+    <td align=left><input name=engSquare_inch ></td>
+    <td align=left><input onClick="if (checkNum(engSquare_inch.value)) compute(this.form, engSquare_inch.name, area_data)" type=button value="换算" name=engSquare_inch_bt></td>
+  </tr>
+  <tr >
+    <td align=right nowrap>公顷(ha)</td>
+    <td align=left><input name=mHectare ></td>
+    <td align=left><input onClick="if (checkNum(mHectare.value)) compute(this.form, mHectare.name, area_data)" type=button value="换算" name=mHectare_bt></td>
+  </tr>
+  <tr >
+    <td align=right nowrap>平方米(m<sup>2</sup>)</td>
+    <td align=left><input name=mSquare_meter ></td>
+    <td align=left><input onClick="if (checkNum(mSquare_meter.value)) compute(this.form, mSquare_meter.name, area_data)" type=button value="换算" name=mSquare_meter_bt></td>
+  </tr>
+  <tr >
+    <td align=right nowrap>平方厘米<br />
+      (cm<sup>2</sup>)</td>
+    <td align=left><input name=mSquare_centimeter ></td>
+    <td align=left><input onClick="if (checkNum(mSquare_centimeter.value)) compute(this.form, mSquare_centimeter.name, area_data)" type=button value="换算" name=mSquare_centimeter_bt></td>
+  </tr>
+  <tr >
+    <td align=right nowrap>平方英里<br />
+      (sq mi)</td>
+    <td align=left><input name=engSquare_mile ></td>
+    <td align=left><input onClick="if (checkNum(engSquare_mile.value)) compute(this.form, engSquare_mile.name, area_data)" type=button value="换算" name=engSquare_mile_bt></td>
+  </tr>
+  <tr >
+    <td align=right nowrap>平方竿<br />
+      (sq rd)</td>
+    <td align=left><input name=usSquare_rod ></td>
+    <td align=left><input onClick="if (checkNum(usSquare_rod.value)) compute(this.form, usSquare_rod.name, area_data)" type=button value="换算" name=usSquare_rod_bt></td>
+  </tr>
+  <tr >
+    <td align=right nowrap>平方英尺<br />
+      (sq ft)</td>
+    <td align=left><input name=engSquare_foot ></td>
+    <td align=left><input onClick="if (checkNum(engSquare_foot.value)) compute(this.form, engSquare_foot.name, area_data)" type=button value="换算" name=engSquare_foot_bt></td>
+  </tr>
+</table>
+
+</form>
+
+
+
+
+
+
+
+
+
+
+
+                </div>
+
+            </div>
+
+ 
+        </section>
+
+    </div>
+ 
+</body>
+</html>

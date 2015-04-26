@@ -1,0 +1,195 @@
+﻿ 
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="gb2312">
+    <title>单位换算</title>
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" id="viewport" name="viewport">
+    <meta content="" name="Description">
+    <meta content="" name="Keywords">
+    <link href="bwc_zz_ip_css/global.css" rel="stylesheet" type="text/css">
+    <link href="bwc_zz_ip_css/theme.css" rel="stylesheet" type="text/css">
+    <style>
+        input {
+            border: 1px solid #FFCECE;
+            padding: 4px;
+        }
+    </style>
+
+
+ 
+    <script language="javascript" type="text/javascript">
+function WEIGHT_MEASURES(){this.mTon=1000;this.mKilogram=1;this.mGram=0.001;this.mMilligram=0.000001;this.cJin=0.5;this.cDan=50;this.cLiang=0.05;this.cQian=0.005;this.avdpPound=0.45359237;this.briTon=2240*this.avdpPound;this.usTon=2000*this.avdpPound;this.briCWT=112*this.avdpPound;this.usCWT=100*this.avdpPound;this.briStone=14*this.avdpPound;this.avdpOunce=this.avdpPound/16;this.avdpDram= this.avdpPound/256;this.avdpGrain=this.avdpPound/7000;this.troyPound=5760*this.avdpGrain;this.troyOunce=480*this.avdpGrain;this.troyDWT=24*this.avdpGrain;this.troyGrain=this.avdpGrain;}var weight_data=new WEIGHT_MEASURES();
+function checkNum(str){for(var i=0;i<str.length;i++){var ch=str.substring(i,i+1);if(ch!="."&&ch!="+"&&ch!="-"&&ch!="e"&&ch!="E"&&(ch<"0"||ch>"9")){alert("请输入有效的数字");return false;}}return true}
+function normalize(what,digits){var str=""+what;var pp=Math.max(str.lastIndexOf("+"),str.lastIndexOf("-"));var idot=str.indexOf(".");if(idot>=1){var ee=(pp>0)?str.substring(pp-1,str.length):"";digits+=idot;if(digits>=str.length){return str;}if(pp>0&&digits>=pp){digits-=pp;}var c=eval(str.charAt(digits));var ipos=digits-1;if(c>=5){while(str.charAt(ipos)=="9"){ipos--;}if(str.charAt(ipos)=="."){var nc=eval(str.substring(0,idot))+1;if(nc==10&&ee.length>0){nc=1;ee="e"+(eval(ee.substring(1,ee.length))+1);}return ""+nc+ee;}return str.substring(0,ipos)+(eval(str.charAt(ipos))+1)+ee;}else{var ret=str.substring(0,digits)+ee;}for(var i=0;i<ret.length;i++){if(ret.charAt(i)>"0"&&ret.charAt(i)<="9"){return ret;}}return str;}return str;}
+function compute(obj,val,data){if(obj[val].value){var uval=0;uval=obj[val].value*data[val];if((uval>=0)&&(obj[val].value.indexOf("-")!=-1)){uval=-uval;}for(var i in data){obj[i].value=normalize(uval/data[i],8);}}}
+function resetValues(form,data){for(var i in data){form[i].value="";}}
+function resetAll(form){resetValues(form,weight_data);}
+</script>
+
+
+
+</head>
+<body>
+    <div class="wrapper">
+
+        <section class="body">
+ 
+ 
+            <div class="module">
+                <div class="topic">
+
+                    <span class="name">重量换算器</span>
+
+                </div>
+            </div>
+            <div class="module">
+                <div class="brief" runat="server" id="showinfo_xx">
+
+          
+
+
+
+
+
+
+
+
+<form action="">
+
+
+    <table align="center"  class="fengexian">
+  <tr >
+    <td align=right nowrap>&nbsp;</td>
+    <td align=left><input onClick=resetAll(this.form) type=button value="数据重置" name=res7></td>
+    <td align=left>&nbsp;</td>
+  </tr>
+  <tr >
+    <td align=right nowrap>吨</td>
+    <td align=left><input name=mTon ></td>
+    <td align=left><input onClick="if (checkNum(mTon.value)) compute(this.form, mTon.name, weight_data)" type=button value="换算" name=mTon_bt></td>
+  </tr>
+  <tr >
+    <td align=right nowrap>克(g)</td>
+    <td align=left><input name=mGram ></td>
+    <td align=left><input onClick="if (checkNum(mGram.value)) compute(this.form, mGram.name, weight_data)" type=button value="换算" name=mGram_bt></td>
+  </tr>
+  <tr >
+    <td align=right nowrap>公斤(kg)</td>
+    <td align=left><input name=mKilogram ></td>
+    <td align=left><input onClick="if (checkNum(mKilogram.value)) compute(this.form, mKilogram.name, weight_data)" type=button value="换算" name=mKilogram_bt></td>
+  </tr>
+  <tr >
+    <td align=right nowrap>毫克(mg)</td>
+    <td align=left><input name=mMilligram ></td>
+    <td align=left><input onClick="if (checkNum(mMilligram.value)) compute(this.form, mMilligram.name, weight_data)" type=button value="换算" name=mMilligram_bt></td>
+  </tr>
+  <tr >
+    <td align=right nowrap>市斤</td>
+    <td align=left><input name=cJin ></td>
+    <td align=left><input onClick="if (checkNum(cJin.value)) compute(this.form, cJin.name, weight_data)" type=button value="换算" name=cJin_bt2></td>
+  </tr>
+  <tr >
+    <td align=right nowrap>两</td>
+    <td align=left><input name=cLiang ></td>
+    <td align=left><input onClick="if (checkNum(cLiang.value)) compute(this.form, cLiang.name, weight_data)" type=button value="换算" name=cLiang_bt></td>
+  </tr>
+  <tr >
+    <td align=right nowrap>担</td>
+    <td align=left><input name=cDan ></td>
+    <td align=left><input onClick="if (checkNum(cDan.value)) compute(this.form, cDan.name, weight_data)" type=button value="换算" name=cDan_bt></td>
+  </tr>
+  <tr >
+    <td align=right nowrap>钱</td>
+    <td align=left><input name=cQian ></td>
+    <td align=left><input onClick="if (checkNum(cQian.value)) compute(this.form, cQian.name, weight_data)" type=button value="换算" name=cQian_bt></td>
+  </tr>
+  <tr >
+    <td align=right nowrap>金衡磅(lb&nbsp;t)</td>
+    <td align=left><input name=troyPound ></td>
+    <td align=left><input onClick="if (checkNum(troyPound.value)) compute(this.form, troyPound.name, weight_data)" type=button value="换算" name=troyPound_bt></td>
+  </tr>
+  <tr >
+    <td align=right nowrap>英钱(dwt)</td>
+    <td align=left><input name=troyDWT ></td>
+    <td align=left><input onClick="if (checkNum(troyDWT.value)) compute(this.form, troyDWT.name, weight_data)" type=button value="换算" name=troyDWT_bt></td>
+  </tr>
+  <tr >
+    <td align=right nowrap>金衡盎司(oz&nbsp;t)</td>
+    <td align=left><input name=troyOunce ></td>
+    <td align=left><input onClick="if (checkNum(troyOunce.value)) compute(this.form, troyOunce.name, weight_data)" type=button value="换算" name=troyOunce_bt></td>
+  </tr>
+  <tr >
+    <td align=right nowrap>金衡格令</td>
+    <td align=left><input name=troyGrain ></td>
+    <td align=left><input onClick="if (checkNum(troyGrain.value)) compute(this.form, troyGrain.name, weight_data)" type=button value="换算" name=troyGrain_bt></td>
+  </tr>
+  <tr >
+    <td align=right nowrap>(英制)长吨</td>
+    <td align=left><input name=briTon ></td>
+    <td align=left><input onClick="if (checkNum(briTon.value)) compute(this.form, briTon.name, weight_data)" type=button value="换算" name=briTon_bt></td>
+  </tr>
+  <tr >
+    <td align=right nowrap>英担(cwt)</td>
+    <td align=left><input name=briCWT ></td>
+    <td align=left><input onClick="if (checkNum(briCWT.value)) compute(this.form, briCWT.name, weight_data)" type=button value="换算" name=briCWT_bt></td>
+  </tr>
+  <tr >
+    <td align=right nowrap>英石</td>
+    <td align=left><input name=briStone ></td>
+    <td align=left><input onClick="if (checkNum(briStone.value)) compute(this.form, briStone.name, weight_data)" type=button value="换算" name=briStone_bt></td>
+  </tr>
+  <tr >
+    <td align=right nowrap>盎司(oz)</td>
+    <td align=left><input name=avdpOunce ></td>
+    <td align=left><input onClick="if (checkNum(avdpOunce.value)) compute(this.form, avdpOunce.name, weight_data)" type=button value="换算" name=avdpOunce_bt></td>
+  </tr>
+  <tr >
+    <td align=right nowrap>格令</td>
+    <td align=left><input name=avdpGrain ></td>
+    <td align=left><input onClick="if (checkNum(avdpGrain.value)) compute(this.form, avdpGrain.name, weight_data)" type=button value="换算" name=avdpGrain_bt></td>
+  </tr>
+  <tr >
+    <td align=right nowrap>(美制)短吨</td>
+    <td align=left><input name=usTon ></td>
+    <td align=left><input onClick="if (checkNum(usTon.value)) compute(this.form, usTon.name, weight_data)" type=button value="换算" name=usTon_bt></td>
+  </tr>
+  <tr >
+    <td align=right nowrap>美担(cwt)</td>
+    <td align=left><input name=usCWT ></td>
+    <td align=left><input onClick="if (checkNum(usCWT.value)) compute(this.form, usCWT.name, weight_data)" type=button value="换算" name=usCWT_bt></td>
+  </tr>
+  <tr >
+    <td align=right nowrap>磅(lb)</td>
+    <td align=left><input name=avdpPound ></td>
+    <td align=left><input onClick="if (checkNum(avdpPound.value)) compute(this.form, avdpPound.name, weight_data)" type=button value="换算" name=avdpPound_bt></td>
+  </tr>
+  <tr >
+    <td align=right nowrap>打兰(dr)</td>
+    <td align=left><input name=avdpDram ></td>
+    <td align=left><input onClick="if (checkNum(avdpDram.value)) compute(this.form, avdpDram.name, weight_data)" type=button value="换算" name=avdpDram_bt></td>
+  </tr>
+</table>
+
+</form>
+
+
+
+
+
+
+
+
+
+
+                </div>
+
+            </div>
+
+ 
+        </section>
+
+    </div>
+ 
+</body>
+</html>

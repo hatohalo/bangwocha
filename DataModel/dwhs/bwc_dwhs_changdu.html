@@ -1,0 +1,183 @@
+﻿ 
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="gb2312">
+    <title>单位换算</title>
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" id="viewport" name="viewport">
+    <meta content="" name="Description">
+    <meta content="" name="Keywords">
+    <link href="bwc_zz_ip_css/global.css" rel="stylesheet" type="text/css">
+    <link href="bwc_zz_ip_css/theme.css" rel="stylesheet" type="text/css">
+    <style>
+        input {
+            border: 1px solid #FFCECE;
+         
+            padding:4px;
+            
+        }
+ 
+    </style>
+ <script language="javascript" type="text/javascript">
+     function LENGTH_MEASURES() {
+         this.mKilometer = 1000; this.mMeter = 1; this.mDecimeter = 0.1; this.mCentimeter = 0.01; this.mMillimeter = 0.001; this.mMicronmeter = 0.000001; this.mLimeter = 500; this.mZhangmeter = 10 / 3; this.mChimeter = 1 / 3; this.mCunmeter = 1 / 30; this.mFenmeter = 1 / 300; this.mmLimeter = 1 / 3000; this.engFoot = 0.3048; this.engMile = 5280 * this.engFoot; this.engFurlong = 660 * this.engFoot; this.engYard = 3 * this.engFoot; this.engInch = this.engFoot / 12; this.nautMile = 1852; this.nautFathom = 6 * this.engFoot;
+     } var length_data = new LENGTH_MEASURES();
+     function checkNum(str) { for (var i = 0; i < str.length; i++) { var ch = str.substring(i, i + 1); if (ch != "." && ch != "+" && ch != "-" && ch != "e" && ch != "E" && (ch < "0" || ch > "9")) { alert("请输入有效的数字"); return false; } } return true; }
+     function normalize(what, digits) { var str = "" + what; var pp = Math.max(str.lastIndexOf("+"), str.lastIndexOf("-")); var idot = str.indexOf("."); if (idot >= 1) { var ee = (pp > 0) ? str.substring(pp - 1, str.length) : ""; digits += idot; if (digits >= str.length) { return str; } if (pp > 0 && digits >= pp) { digits -= pp; } var c = eval(str.charAt(digits)); var ipos = digits - 1; if (c >= 5) { while (str.charAt(ipos) == "9") { ipos--; } if (str.charAt(ipos) == ".") { var nc = eval(str.substring(0, idot)) + 1; if (nc == 10 && ee.length > 0) { nc = 1; ee = "e" + (eval(ee.substring(1, ee.length)) + 1); } return "" + nc + ee; } return str.substring(0, ipos) + (eval(str.charAt(ipos)) + 1) + ee; } else { var ret = str.substring(0, digits) + ee; } for (var i = 0; i < ret.length; i++) { if (ret.charAt(i) > "0" && ret.charAt(i) <= "9") { return ret; } } return str; } return str; }
+     function compute(obj, val, data) { if (obj[val].value) { var uval = 0; uval = obj[val].value * data[val]; if ((uval >= 0) && (obj[val].value.indexOf("-") != -1)) { uval = -uval; } for (var i in data) { obj[i].value = normalize(uval / data[i], 8); } } }
+     function resetValues(form, data) { for (var i in data) { form[i].value = ""; } } function resetAll(form) { resetValues(form, length_data); }
+</script>
+
+    
+
+
+</head>
+<body>
+    <div class="wrapper">
+
+        <section class="body">
+ 
+            <div class="module">
+                <div class="topic">
+                    <span class="name">长度换算器</span>
+
+                </div>
+            </div>
+            <div class="module">
+                <div class="brief" runat="server" id="showinfo_xx">
+
+          
+
+
+
+<form action="">
+
+
+    <table align="center" class="fengexian">
+  <tr  >
+    <td align=right nowrap>&nbsp;</td>
+    <td align=left><input onClick=resetAll(this.form) type=button value="数据重置" name=res7></td>
+    <td align=left>&nbsp;</td>
+  </tr>
+  <tr  >
+    <td align=right nowrap>公里(km)</td>
+    <td align=left><input name=mKilometer ></td>
+    <td align=left><input onClick="if (checkNum(mKilometer.value)) compute(this.form,mKilometer.name,length_data)" type=button value="换算" name=mKilometer_bt></td>
+  </tr>
+  <tr  >
+    <td align=right nowrap>分米(dm)</td>
+    <td align=left><input name=mDecimeter ></td>
+    <td align=left><input onClick="if (checkNum(mDecimeter.value)) compute(this.form,mDecimeter.name,length_data)" type=button value="换算" name=mDecimeter_bt></td>
+  </tr>
+  <tr  >
+    <td align=right nowrap>毫米(mm)</td>
+    <td align=left><input name=mMillimeter ></td>
+    <td align=left><input onClick="if (checkNum(mMillimeter.value)) compute(this.form,mMillimeter.name,length_data)" type=button value="换算" name=mMillimeter_bt></td>
+  </tr>
+  <tr  >
+    <td align=right nowrap>里</td>
+    <td align=left><input name=mLimeter ></td>
+    <td align=left><input onClick="if (checkNum(mLimeter.value)) compute(this.form,mLimeter.name,length_data)" type=button value="换算" name=mLimeter_bt></td>
+  </tr>
+  <tr  >
+    <td align=right nowrap>尺</td>
+    <td align=left><input name=mChimeter ></td>
+    <td align=left><input onClick="if (checkNum(mChimeter.value)) compute(this.form,mChimeter.name,length_data)" type=button value="换算" name=mChimeter_bt></td>
+  </tr>
+  <tr  >
+    <td align=right nowrap>分</td>
+    <td align=left><input name=mFenmeter ></td>
+    <td align=left><input onClick="if (checkNum(mFenmeter.value)) compute(this.form,mFenmeter.name,length_data)" type=button value="换算" name=mFenmeter_bt></td>
+  </tr>
+  <tr  >
+    <td align=right nowrap>海里(nmi)</td>
+    <td align=left><input name=nautMile ></td>
+    <td align=left><input onClick="if (checkNum(nautMile.value)) compute(this.form,nautMile.name,length_data)" type=button value="换算" name=nautMile_bt></td>
+  </tr>
+  <tr  >
+    <td align=right nowrap>英里(mi)</td>
+    <td align=left><input name=engMile ></td>
+    <td align=left><input onClick="if (checkNum(engMile.value)) compute(this.form,engMile.name,length_data)" type=button value="换算" name=engMile_bt></td>
+  </tr>
+  <tr  >
+    <td align=right nowrap>码(yd)</td>
+    <td align=left><input name=engYard ></td>
+    <td align=left><input onClick="if (checkNum(engYard.value)) compute(this.form,engYard.name,length_data)" type=button value="换算" name=engYard_bt></td>
+  </tr>
+  <tr  >
+    <td align=right nowrap>英寸(in)</td>
+    <td align=left><input name=engInch ></td>
+    <td align=left><input onClick="if (checkNum(engInch.value)) compute(this.form,engInch.name,length_data)" type=button value="换算" name=engInch_bt></td>
+  </tr>
+  <tr  >
+    <td align=right nowrap>米(m)</td>
+    <td align=left><input name=mMeter ></td>
+    <td align=left><input onClick="if (checkNum(mMeter.value)) compute(this.form,mMeter.name,length_data)" type=button value="换算" name=mMeter_bt></td>
+  </tr>
+  <tr  >
+    <td align=right nowrap>厘米(cm)</td>
+    <td align=left><input name=mCentimeter ></td>
+    <td align=left><input onClick="if (checkNum(mCentimeter.value)) compute(this.form,mCentimeter.name,length_data)" type=button value="换算" name=mCentimeter_bt></td>
+  </tr>
+  <tr  >
+    <td align=right nowrap>微米(um)</td>
+    <td align=left><input name=mMicronmeter ></td>
+    <td align=left><input onClick="if (checkNum(mMicronmeter.value)) compute(this.form,mMicronmeter.name,length_data)" type=button value="换算" name=mMicronmeter_bt></td>
+  </tr>
+  <tr  >
+    <td align=right nowrap>丈</td>
+    <td align=left><input name=mZhangmeter ></td>
+    <td align=left><input onClick="if (checkNum(mZhangmeter.value)) compute(this.form,mZhangmeter.name,length_data)" type=button value="换算" name=mZhangmeter_bt></td>
+  </tr>
+  <tr  >
+    <td align=right nowrap>寸</td>
+    <td align=left><input name=mCunmeter ></td>
+    <td align=left><input onClick="if (checkNum(mCunmeter.value)) compute(this.form,mCunmeter.name,length_data)" type=button value="换算" name=mCunmeter_bt></td>
+  </tr>
+  <tr  >
+    <td align=right nowrap>厘</td>
+    <td align=left><input name=mmLimeter ></td>
+    <td align=left><input onClick="if (checkNum(mmLimeter.value)) compute(this.form,mmLimeter.name,length_data)" type=button value="换算" name=mmLimeter_bt></td>
+  </tr>
+  <tr  >
+    <td align=right nowrap>英寻</td>
+    <td align=left><input name=nautFathom ></td>
+    <td align=left><input onClick="if (checkNum(nautFathom.value)) compute(this.form,nautFathom.name,length_data)" type=button value="换算" name=nautFathom_bt></td>
+  </tr>
+  <tr  >
+    <td align=right nowrap>弗隆(fur)</td>
+    <td align=left><input name=engFurlong ></td>
+    <td align=left><input onClick="if (checkNum(engFurlong.value)) compute(this.form,engFurlong.name,length_data)" type=button value="换算" name=engFurlong_bt></td>
+  </tr>
+  <tr  >
+    <td align=right nowrap>英尺(ft)</td>
+    <td align=left><input name=engFoot ></td>
+    <td align=left><input onClick="if (checkNum(engFoot.value)) compute(this.form,engFoot.name,length_data)" type=button value="换算" name=engFoot_bt></td>
+  </tr>
+</table>
+ 
+
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+                </div>
+
+            </div>
+
+ 
+        </section>
+
+    </div>
+ 
+</body>
+</html>

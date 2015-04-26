@@ -1,0 +1,12 @@
+--所有建议明细
+select * from BWC_jianyi
+--所有统计提交
+select * from BWC_tongji order by tjTime desc
+
+--多少手机(硬件)装并使用过应用
+select distinct hardwareToken_Id,easClientDeviceInformation_SystemProductName from  BWC_tongji
+
+ 
+
+--多少设备种类使用过
+select distinct easClientDeviceInformation_SystemProductName from  BWC_tongji

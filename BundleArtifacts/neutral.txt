@@ -1,0 +1,3 @@
+MainPackage=F:\于海滨工作文件2014.04.15以前\富美开发项目\WP8开发学习\帮我查\源代码\帮我查\bin\Release\帮我查_1.7.5.2_Bundle\帮我查_1.7.5.2_AnyCPU.appx
+ResourcePack=F:\于海滨工作文件2014.04.15以前\富美开发项目\WP8开发学习\帮我查\源代码\帮我查\bin\Release\帮我查_1.7.5.2_Bundle\帮我查_1.7.5.2_scale-100.appx
+ResourcePack=F:\于海滨工作文件2014.04.15以前\富美开发项目\WP8开发学习\帮我查\源代码\帮我查\bin\Release\帮我查_1.7.5.2_Bundle\帮我查_1.7.5.2_scale-140.appx

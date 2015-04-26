@@ -1,0 +1,268 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<VoiceCommands xmlns="http://schemas.microsoft.com/voicecommands/1.1">
+  <CommandSet xml:lang="zh-CN">
+    <CommandPrefix>帮我查</CommandPrefix>
+    <Example>小娜技能超级外挂</Example>
+    <!-- 天气-->
+    <Command Name="tianqi01">
+      <Example>{某城市}的天气</Example>
+      <ListenFor>{city}[的]天气[预报]</ListenFor>
+      <Feedback>请稍等，正在查{city}天气</Feedback>
+      <Navigate Target="帮我查.SUBmain_tianqi" />
+    </Command>
+    <!-- 快递-->
+    <Command Name="kuaidi01">
+      <Example>快递单号 {某单号}</Example>
+      <ListenFor>快递[单][号]{kuaidiNumber}</ListenFor>
+      <Feedback>请稍等，正在查{kuaidiNumber}快递单</Feedback>
+      <Navigate Target="帮我查.SUBmain_kuaidi" />
+    </Command>
+    <!-- 菜谱-->
+    <Command Name="caipu01">
+      <Example>{某菜名} 怎么做</Example>
+      <ListenFor>{tongyong}怎么做</ListenFor>
+      <Feedback>请稍等，正在查{tongyong}的做法</Feedback>
+      <Navigate Target="帮我查.SUBmain_caipu" />
+    </Command>
+    <Command Name="caipu02">
+      <Example>怎么做 {某菜名}</Example>
+      <ListenFor>怎么做{tongyong}</ListenFor>
+      <Feedback>请稍等，正在查{tongyong}的做法</Feedback>
+      <Navigate Target="帮我查.SUBmain_caipu" />
+    </Command>
+    <Command Name="caipu03">
+      <Example>{某菜名} 的菜谱</Example>
+      <ListenFor>{tongyong}[的]菜谱</ListenFor>
+      <Feedback>请稍等，正在查{tongyong}的做法</Feedback>
+      <Navigate Target="帮我查.SUBmain_caipu" />
+    </Command>
+    <Command Name="caipu04">
+      <Example>{某菜名} 的做法</Example>
+      <ListenFor>{tongyong}[的]做法</ListenFor>
+      <Feedback>请稍等，正在查{tongyong}的做法</Feedback>
+      <Navigate Target="帮我查.SUBmain_caipu" />
+    </Command>
+    <!-- 解梦-->
+    <Command Name="jiemeng01">
+      <Example>梦见 {某事物}</Example>
+      <ListenFor>梦见[了]{tongyong}[怎么回事][意味着什么][怎么解][什么意思]</ListenFor>
+      <Feedback>请稍等，正在查梦见{tongyong}</Feedback>
+      <Navigate Target="帮我查.SUBmain_jiemeng" />
+    </Command>
+    <Command Name="jiemeng02">
+      <Example>梦到 {某事物}</Example>
+      <ListenFor>梦到[了]{tongyong}[怎么回事][意味着什么][怎么解][什么意思]</ListenFor>
+      <Feedback>请稍等，正在查{tongyong}的解梦</Feedback>
+      <Navigate Target="帮我查.SUBmain_jiemeng" />
+    </Command>
+    <!-- 公交-->
+    <Command Name="gongjiao01">
+      <Example>{某城市} 公交</Example>
+      <ListenFor>{city}公交[信息][线路][路线]</ListenFor>
+      <Feedback>请稍等，正在查{city}公交信息</Feedback>
+      <Navigate Target="帮我查.SUBmain_gongjiao" />
+    </Command>
+    <!-- 股票-->
+    <Command Name="gupiao01">
+      <Example>股票 {某股票代码或名称}</Example>
+      <ListenFor>股票[代码]{tongyong}</ListenFor>
+      <Feedback>请稍等，正在查{tongyong}行情</Feedback>
+      <Navigate Target="帮我查.SUBmain_gupiao" />
+    </Command>
+    <!-- 彩票-->
+    <Command Name="fulicaipiao01">
+      <Example>彩票开奖</Example>
+      <ListenFor>彩票[开奖][信息]</ListenFor>
+      <Feedback>请稍等，正在查彩票开奖信息</Feedback>
+      <Navigate Target="帮我查.SUBmain_fulicaipiao" />
+    </Command>
+    <!-- 违章-->
+    <Command Name="carweizhang01">
+      <Example>车辆违章</Example>
+      <ListenFor>[车辆]违章[信息]</ListenFor>
+      <Feedback>请稍等，正在查车辆违章信息</Feedback>
+      <Navigate Target="帮我查.SUBmain_carweizhang" />
+    </Command>
+    <!-- 单位换算--> 
+    <Command Name="danweihuansuan01">
+      <Example>{某度量分类,如“长度”、“重量”} 单位换算</Example>
+      <ListenFor>[长度][重量][面积][体积][温度][压力][功率][能量][单位]换算[器][工具]</ListenFor>
+      <Feedback>请稍等，正在查单位换算工具</Feedback>
+      <Navigate Target="帮我查.SUBmain_danweihuansuan" />
+    </Command> 
+    <!-- 用浏览器进行百度搜索-->
+    <Command Name="baidu01">
+      <Example>度娘 {关键字}</Example>
+      <ListenFor>度娘{tongyong}</ListenFor>
+      <Feedback>请稍等，正在查百度关键字:{tongyong}</Feedback>
+      <Navigate Target="特殊:百度搜索" />
+    </Command>
+    <Command Name="baidu02">
+      <Example>百度 {关键字}</Example>
+      <ListenFor>百度{tongyong}</ListenFor>
+      <Feedback>请稍等，正在查百度关键字:{tongyong}</Feedback>
+      <Navigate Target="特殊:百度搜索" />
+    </Command>
+    <!-- 用浏览器进行百度百科搜索-->
+    <Command Name="baidubaike01">
+      <Example>百度百科 {关键字}</Example>
+      <ListenFor>百度百科{tongyong}</ListenFor>
+      <Feedback>请稍等，正在查百度百科关键字:{tongyong}</Feedback>
+      <Navigate Target="特殊:百度百科搜索" />
+    </Command>
+    <!-- 用浏览器进行维基百科搜索-->
+    <Command Name="weijibaike01">
+      <Example>维基百科 {关键字}</Example>
+      <ListenFor>维基百科{tongyong}</ListenFor>
+      <Feedback>请稍等，正在查维基百科关键字:{tongyong}</Feedback>
+      <Navigate Target="特殊:维基百科搜索" />
+    </Command>
+    <!-- 身份证-->
+    <Command Name="shenfenzheng01">
+      <Example>身份证 {某号码}</Example>
+      <ListenFor>身份证[号][号码]{kuaidiNumber}</ListenFor>
+      <Feedback>请稍等，正在查{kuaidiNumber}的身份证</Feedback>
+      <Navigate Target="帮我查.SUBmain_shenfenzheng" />
+    </Command>
+
+    <!-- 外汇计算-->
+    <Command Name="rili01">
+      <Example>万年历</Example>
+      <ListenFor>万年历</ListenFor>
+      <Feedback>请稍等，正在查万年历</Feedback>
+      <Navigate Target="帮我查.SUBmain_rili" />
+    </Command>
+    <!-- 工资计算-->
+    <Command Name="gongzi01">
+      <Example>工资</Example>
+      <ListenFor>工资</ListenFor>
+      <Feedback>请稍等，正在查工资</Feedback>
+      <Navigate Target="帮我查.SUBmain_gongzi" />
+    </Command>
+    <!-- 星座-->
+    <Command Name="xingzuo01">
+      <Example>{某星座} 本周运势</Example>
+      <ListenFor>{xingzuo}[本周]运势</ListenFor>
+      <Feedback>请稍等，正在查{xingzuo}本周运势</Feedback>
+      <Navigate Target="帮我查.SUBmain_xingzuoyunshi" />
+    </Command>
+    <Command Name="xingzuo02">
+      <Example>{某星座} 本月运势</Example>
+      <ListenFor>{xingzuo}本月运势</ListenFor>
+      <Feedback>请稍等，正在查{xingzuo}本月运势</Feedback>
+      <Navigate Target="帮我查.SUBmain_xingzuoyunshi" />
+    </Command>
+    <!-- 外汇计算-->
+    <Command Name="waihui01">
+      <Example>外汇</Example>
+      <ListenFor>外汇[汇率][计算][器]</ListenFor>
+      <Feedback>请稍等，正在查外汇计算器</Feedback>
+      <Navigate Target="帮我查.SUBmain_waihui" />
+    </Command>
+    <!-- 归属地-->
+    <Command Name="guishu01">
+      <Example>{某号码} 的归属地</Example>
+      <ListenFor>{kuaidiNumber}[的]归属地</ListenFor>
+      <Feedback>请稍等，正在查{kuaidiNumber}的归属地</Feedback>
+      <Navigate Target="帮我查.SUBmain_guishu" />
+    </Command>
+    <Command Name="guishu02">
+      <Example>归属地 {某号码}</Example>
+      <ListenFor>[手机][号]归属地{kuaidiNumber}</ListenFor>
+      <Feedback>请稍等，正在查{kuaidiNumber}的归属地</Feedback>
+      <Navigate Target="帮我查.SUBmain_guishu" />
+    </Command>
+    <!-- 码农黄历-->
+    <Command Name="manong01">
+      <Example>程序员黄历</Example>
+      <ListenFor>程序员黄历</ListenFor>
+      <Feedback>请稍等，正在查程序员黄历</Feedback>
+      <Navigate Target="帮我查.SUBmain_manonghl" />
+    </Command>
+    <!-- IP地址-->
+    <Command Name="ip01">
+      <Example>IP地址 {某IP}</Example>
+      <ListenFor>IP地址{kuaidiNumber}</ListenFor>
+      <Feedback>请稍等，正在查IP:{kuaidiNumber}</Feedback>
+      <Navigate Target="帮我查.SUBmain_ipdizhi" />
+    </Command>
+    <!-- 域名信息-->
+    <Command Name="yuming01">
+      <Example>域名 {某域名}</Example>
+      <ListenFor>域名{tongyong}</ListenFor>
+      <Feedback>请稍等，正在查域名:{tongyong}</Feedback>
+      <Navigate Target="帮我查.SUBmain_yuming" />
+    </Command>
+    <!-- MD5-->
+    <Command Name="md501">
+      <Example>彩虹表</Example>
+      <ListenFor>彩虹表</ListenFor>
+      <Feedback>请稍等，正在查MD5</Feedback>
+      <Navigate Target="帮我查.SUBmain_md5" />
+    </Command>
+
+
+    <!-- 二维码--><!--
+    <Command Name="erweima01">
+      <Example>二维码</Example>
+      <ListenFor>二维码</ListenFor>
+      <Feedback>请稍等，正在查二维码</Feedback>
+      <Navigate Target="帮我查.SUBmain_QR" />
+    </Command>-->
+    
+    
+    
+    
+    <!-- 彩蛋-->
+    <Command Name="CD01">
+      <Example>谁最帅</Example>
+      <ListenFor>谁最帅</ListenFor>
+      <Feedback>请稍等，正在查谁最帅</Feedback>
+      <Navigate Target="帮我查.SUBmain_caidan" />
+    </Command>
+    <Command Name="CD02">
+      <Example>谁最猥琐</Example>
+      <ListenFor>谁最猥琐</ListenFor>
+      <Feedback>请稍等，正在查谁最猥琐</Feedback>
+      <Navigate Target="帮我查.SUBmain_caidan" />
+    </Command>
+ 
+    
+    <PhraseTopic Label="city" Scenario="Dictation">
+      <Subject>City/State</Subject>
+    </PhraseTopic>
+    <PhraseTopic Label="kuaidiNumber" Scenario="Form Filling">
+      <Subject>Phone Number</Subject>
+    </PhraseTopic>
+    <PhraseTopic Label="tongyong" Scenario="Search">
+    </PhraseTopic>
+    <PhraseTopic Label="xingzuo" Scenario="Search">
+    </PhraseTopic>
+  </CommandSet>
+</VoiceCommands>
+
+<!-- 示例-->
+<!--
+
+    前面的示例演示一个名为“Contoso ROD3O!”的假想游戏，其中定义两个
+    命令，用户可以通过说出这些命令来开始新游戏或重玩游戏中三个关卡中的某一关。
+    若要启动 PlayGame 命令，用户可以说“Contoso Rodeo play a new game”或“Contoso Rodeo
+    play new game”。这两个短语均可开始新的游戏。若要启动另一个命令，用户可以说
+    “Contoso Rodeo replay level one”、“Contoso Rodeo replay level two”或“Contoso Rodeo replay level
+    three”。
+    第二个命令演示如何在命令中使用 PhraseList。PhraseList 可由
+    应用程序动态更新(例如，如果用户解锁新的关卡、游戏或功能，则您可能
+    需要允许用户在已注册语音命令后提供用于新功能的命令。)
+    第三个命令演示 {*} 序列如何可以与其他命令并行，以识别 CommandSet 中
+    未定义的语音。
+
+  注意:
+
+      [and] 指示“and”为可选项。使此类连接词成为可选项
+            可以帮助轻松读出“Contoso Rodeo, play new game”和“open Contoso Rodeo and play
+            a new game”。
+                 
+      {number} 与命令分开定义，映射到“one”、“two”或“three”。
+
+-->

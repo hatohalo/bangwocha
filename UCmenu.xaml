@@ -1,0 +1,76 @@
+﻿<UserControl
+    x:Class="帮我查.UCmenu"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:帮我查"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="126"
+    d:DesignWidth="400" >
+
+    <Border x:Name="_biankuang" BorderBrush="#606060" BorderThickness="1">
+        <Border.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FF5F5F5F" Offset="1"/>
+                <GradientStop Color="#FF5F5F5F" Offset="0.014"/>
+            </LinearGradientBrush>
+        </Border.Background>
+
+        <Grid x:Name="_MenuANNIU">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150" />
+                <ColumnDefinition Width="*"/>
+                <!--先藏起来-->
+                <ColumnDefinition Width="0" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid x:Name="_MenuANNIU_zuo" Margin="5,5,5,5" Grid.Row="0"  Grid.Column="0" Background="#336699" PointerEntered="_MenuANNIU_zuo_PointerEntered" PointerExited="_MenuANNIU_zuo_PointerExited" PointerPressed="_MenuANNIU_zuo_PointerPressed" PointerCanceled="_MenuANNIU_zuo_PointerCanceled" PointerCaptureLost="_MenuANNIU_zuo_PointerCaptureLost" PointerMoved="_MenuANNIU_zuo_PointerMoved" PointerReleased="_MenuANNIU_zuo_PointerReleased">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <TextBlock x:Name="_SN" HorizontalAlignment="Center" Margin="0,0,0,0" TextWrapping="Wrap" Text="{Binding Title}"  FontSize='27' VerticalAlignment="Center"  FontFamily="Segoe WP Black" FontWeight="Bold" RequestedTheme="Dark">
+                    <TextBlock.Foreground>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="White"/>
+                            <GradientStop Color="#FF9E9E9E" Offset="1"/>
+                        </LinearGradientBrush>
+                    </TextBlock.Foreground>
+                </TextBlock>
+            </Grid>
+            <Grid x:Name="_MenuANNIU_zhong" Background="#CCCCCC" Margin="8,15,8,15" Grid.Row="0"  Grid.Column="1"  PointerEntered="_MenuANNIU_zuo_PointerEntered" PointerExited="_MenuANNIU_zuo_PointerExited" PointerPressed="_MenuANNIU_zuo_PointerPressed" PointerCanceled="_MenuANNIU_zuo_PointerCanceled" PointerCaptureLost="_MenuANNIU_zuo_PointerCaptureLost" PointerMoved="_MenuANNIU_zuo_PointerMoved" PointerReleased="_MenuANNIU_zuo_PointerReleased">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <TextBlock x:Name="_info" HorizontalAlignment="Left" Margin="0,0,0,0" TextWrapping="Wrap" Text="{Binding Subtitle}"  FontSize='20' Foreground="#c4c4c4" VerticalAlignment="Top" FontFamily="Segoe WP Black"/>
+
+
+            </Grid>
+
+            <Grid x:Name="_MenuANNIU_you"  Margin="5,5,5,5" Grid.Row="0"  Grid.Column="2" Background="#CCC" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Image x:Name="_aaa1"  Grid.Row="0"  Grid.Column="0" Source="Assets/shoucang.png" HorizontalAlignment="Center" Height="35"  Width="35" Margin="0,0,0,0" VerticalAlignment="Center" PointerCanceled="Image_PointerCanceled" PointerCaptureLost="Image_PointerCaptureLost" PointerEntered="Image_PointerEntered" PointerExited="Image_PointerExited" PointerMoved="Image_PointerMoved" PointerPressed="Image_PointerPressed" PointerReleased="Image_PointerReleased"/>
+                <Image x:Name="_aaa2"  Grid.Row="1"  Grid.Column="0" Source="Assets/zhiding.png" HorizontalAlignment="Center" Height="35"  Width="35" Margin="0,0,0,0" VerticalAlignment="Center" PointerCanceled="Image_PointerCanceled_1" PointerCaptureLost="Image_PointerCaptureLost_1" PointerEntered="Image_PointerEntered_1" PointerExited="Image_PointerExited_1" PointerMoved="Image_PointerMoved_1" PointerPressed="Image_PointerPressed_1" PointerReleased="Image_PointerReleased_1"/>
+
+            </Grid>
+
+
+
+        </Grid>
+    </Border>
+</UserControl>
